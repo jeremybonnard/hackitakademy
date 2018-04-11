@@ -1,19 +1,4 @@
-CREATE DATABASE hack;
-
-CREATE TABLE utilisateur
-(
-    id INT PRIMARY KEY NOT NULL,
-    avatar VARCHAR (255),
-    pseudo VARCHAR(100),
-    password VARCHAR(56),
-)
-
-CREATE TABLE goldenPage
-(
-    id INT PRIMARY KEY NOT NULL,
-    titre VARCHAR (255),
-    pseudo TEXT,
-    CONSTRAINT fk_client_numero
-        FOREIGN KEY (userId)
-        REFERENCES utilisateur(id)
-)
+DROP TABLE IF EXISTS utilisateur;
+CREATE TABLE IF NOT EXISTS utilisateur(id int AUTO_INCREMENT,avatar VARCHAR (255),pseudo VARCHAR(100),password VARCHAR(56), PRIMARY KEY(ID));
+DROP TABLE IF EXISTS goldenPage;
+CREATE TABLE IF NOT EXISTS goldenPage(id int AUTO_INCREMENT,title VARCHAR (255),pseudo TEXT, PRIMARY KEY(ID),CONSTRAINT fk_user_id FOREIGN KEY (Id) REFERENCES utilisateur(id));
