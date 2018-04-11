@@ -6,7 +6,8 @@
 
 	include('Include/Database.php');
 
-
+	
+	include('class/User.class.php');
 	include('controller/user.controller.php');
 
 
@@ -24,6 +25,14 @@
 	elseif($_GET['action'] == 'userCreateForm')
 	{
 		userCreateForm();
+	}
+	elseif($_GET['action'] == 'userUpdateForm')
+	{
+		userUpdateForm();
+	}
+	elseif($_GET['action'] == 'userUpdateResponse')
+	{
+		userUpdateResponse();
 	}
 	else
 	{
