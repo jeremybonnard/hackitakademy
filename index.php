@@ -1,8 +1,15 @@
 <?php
+
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors',1);
 	error_reporting(E_ALL);
+
+	include('include/database.php');
+
+
 	include('controller/user.controller.php');
+
+
 
 	echo "<html>";
 	echo 	"<head>";
@@ -22,6 +29,6 @@
 	{
 		Echo "404 Action non trouver!";
 	}
-	
+
 	echo 	"</body>";
 ?>

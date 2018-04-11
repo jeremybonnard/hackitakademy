@@ -1,5 +1,5 @@
 <?php 
-
+include('include/database.php');
 ////////////////////////////////////////
 //
 // Class User
@@ -32,9 +32,9 @@ class User
 	}
 
 	function chargerUser($id)
-	{
-		$pdo = new database();
-		$data = $pdo->query('SELECT * FROM user WHERE id = '.$id);
+	{	
+		$pdo = database::getConnection();
+		$data = $pdo->query('SELECT * FROM user WHERE id = '.database::secureVar($id).'');
 		foreach  ($data as $row) {
 			$this->setId($row['id']);
 			$this->setPseudo($row['pseudo']);
@@ -89,11 +89,11 @@ class User
 
 	function enregistrerUser()
 	{	
-		return "bdd n'existe pas encore";
-		$pdo = new database();
+
+		$pdo = database::getConnection();
 		if($this->id == null)
 		{
-			$return = $pdo->query('INSERT INTO user(pseudo,password) VALUES ("'.$this->pseudo.'","'.$this->password.'")');
+			$return = $pdo->query('INSERT INTO user(pseudo,password) VALUES ("'.htmlentities($this->pseudo).'","'.database::secureVar($this->password).'")');
 			$this->id = $pdo->lastInsertId;
 		}
 		else
