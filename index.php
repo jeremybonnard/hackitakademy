@@ -13,7 +13,7 @@
 	include('controller/user.controller.php');
 	include('controller/GoldenBook.controller.php');
 	//View
-	include('view/viewComments.html');
+	
 
 	echo "<!doctype html>";
 	echo 	"<html lang=\"fr\">";
@@ -28,6 +28,15 @@
 	if($_GET['action'] == 'userCreateResponse')
 	{
 		userCreateResponse("toto", "mdp");
+	}
+	elseif($_GET['action'] == 'createCommentsForm')
+	{
+		createCommentsForm();
+	}
+	elseif($_GET['action'] == 'addComment')
+	{	
+		$id = $_GET['userId'];
+		addComment($id);
 	}
 	elseif($_GET['action'] == 'userCreateForm')
 	{

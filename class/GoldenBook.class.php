@@ -1,56 +1,101 @@
 <?php
 
-	class GoldenBookModel {
-		
-		private $id;
-		private $title;
-		private $text;
-	    private $user_id;
+class GoldenBook 
+{
+	private $id;
+	private $title;
+	private $content;
+    private $user_id;
 
-	    public function __construct($id, $title, $text, $user_id) {
-        	$this->id = $id;
-        	$this->title = $title;
-        	$this->text = $text;
-        	$this->user_id = $user_id;
-    	}
+    public function __construct() {
+    	$this->id = null;
+    	$this->title = null;
+    	$this->content = null;
+    	$this->user_id = null;
+	}
 
-	    public function getId() {
-        	return $this->id;
-    	}
-    	public function setId($value) {
-        	$this->id = $value;
-    	}
+	function createComment($title, $text, $user_id)
+	{
 
-	    public function getTitle() {
-        	return $this->title;
-    	}
-    	public function setTitle($value) {
-        	$this->title = $value;
-    	}
+		$this->id = null;
+		$this->title = $title;
+		$this->content = $content;
+		$this->user_id = $user_id;
+		$this->registerComment();
+	}
 
-    	public function getText() {
-        	return $this->text;
-    	}
-    	public function setText($value) {
-        	$this->text = $value;
-    	}
+	function updateComment($id, $title, $text, $user_id)
+	{
 
-    	public function getUserId() {
-        	return $this->user_id;
-    	}
-    	public function setUserId($value) {
-        	$this->user_id = $value;
-    	}
+		$this->id = $id;
+		$this->title = $title;
+		$this->content = $content;
+		$this->user_id = $user_id;
+		$this->registerComment();
+	}
 
 
-		public static function listingComments(){
-			$db = Database::getConnection();
-			$sql = user_id;
-			$stmt = $db->prepare("SELECT title, pseudo FROM goldenPage");
-			$result = $stmt->execute(['user_id' => $user_id])->fetchAll();
-			var_dump($result);
-			return $result;
+    public function getId() {
+    	return $this->id;
+	}
+	public function setId($value) {
+    	$this->id = $value;
+	}
 
+    public function getTitle() {
+    	return $this->title;
+	}
+	public function setTitle($value) {
+    	$this->title = $value;
+	}
+
+	public function getContent() {
+    	return $this->content;
+	}
+	public function setContent($value) {
+    	$this->content = $value;
+	}
+
+	public function getUserId() {
+    	return $this->user_id;
+	}
+	public function setUserId($value) {
+    	$this->user_id = $value;
+	}
+
+
+	public static function listingAllComments(){
+		$db = Database::getConnection();
+		$sql = user_id;
+		$stmt = $db->prepare("SELECT title, pseudo FROM goldenPage");
+		$result = $stmt->execute()->fetchAll();
+		var_dump($result);
+		return $result;
+
+	}
+
+	public static function listingComments($user_id){
+		$db = Database::getConnection();
+		$sql = user_id;
+		$stmt = $db->prepare("SELECT title, content FROM goldenPage WHERE userId = :user_id");
+		$result = $stmt->execute(['user_id' => $user_id])->fetchAll();
+		var_dump($result);
+		return $result;
+
+	}
+
+	function registerComment()
+	{	
+
+		$pdo = Database::getConnection();
+		if($this->id == null)
+		{
+			$result = $pdo->query('INSERT INTO goldenPage(title,content, userId) VALUES ("'.htmlentities(Security::secureVar($this->title).'","'.Security::secureVar($this->content).'","'.Security::secureVar($this->user_id).'")'));
+			
+		}
+		else
+		{
+			$result = $pdo->query('UPDATE goldenPage SET title = "'.Security::secureVar($this->title).'", content="'.Security::secureVar($this->content).'", userId="'.Security::secureVar($this->user_id).'" WHERE id='.$this->id);
 		}
 	}
-?>
+}
