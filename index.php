@@ -4,9 +4,11 @@
 	ini_set('display_startup_errors',1);
 	error_reporting(E_ALL);
 
-	include('Include/Database.php');
 	//Model
-	include('class/GoldenBook.class.php');
+	include('class/GoldenBook.class.php');	
+	include('class/Database.php');
+	include('class/Security.php');
+
 	//Controller
 	include('controller/user.controller.php');
 	include('controller/GoldenBook.controller.php');
