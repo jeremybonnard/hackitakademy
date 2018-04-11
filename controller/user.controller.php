@@ -77,7 +77,7 @@ function userConnectForm()
 
 function userConnectResponse()
 {
-	if(isset($_POST['pseudo'] && isset($_POST['password']))
+	if(isset($_POST['pseudo']) && isset($_POST['password']))
 	{
 		$pdo = database::getConnection();
 		$pseudo = security::secureVar($_POST['pseudo']);

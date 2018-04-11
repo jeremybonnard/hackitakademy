@@ -41,9 +41,9 @@
 	{
 		userUpdateResponse();
 	}
-	elseif($_GET['action'] == 'userConnectResponse')
+	elseif($_GET['action'] == 'userConnectForm')
 	{
-		userConnectResponse();
+		userConnectForm();
 	}
 	elseif($_GET['action'] == 'userConnectResponse')
 	{
