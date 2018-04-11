@@ -45,7 +45,11 @@
 
 		public function listing($user_id){
 			$db = Database::getConnection();
-			//$sql = 'SELECT title, pseudo FROM goldenPage WHERE '
+			$sql = user_id;
+			$stmt = $db->prepare("SELECT title, pseudo FROM goldenPage WHERE userId = :user_id");
+			$result = $stmt->execute(['user_id' => $user_id])->fetchAll();
+			return $result;
+
 		}
 	}
 ?>
