@@ -13,15 +13,33 @@ class User
 	private $password;
 	private $avatar;
 
-	function __construct($id)
+	function __construct()
+	{
+		$this->id = null;
+		$this->pseudo = null;
+		$this->password = null;
+		$this->avatar = null;
+	}
+
+	function creeUser($pseudo, $password)
+	{
+
+		$this->id = null;
+		$this->pseudo = $pseudo;
+		$this->password = $password;
+		$this->avatar = null;
+		$this->enregistrerUser();
+	}
+
+	function chargerUser($id)
 	{
 		$pdo = new database();
 		$data = $pdo->query('SELECT * FROM user WHERE id = '.$id);
 		foreach  ($data as $row) {
-			$this->id = $row['id'];
-			$this->pseudo = $row['pseudo'];
-			$this->password = $row['password'];
-			$this->avatar = $row['avatar'];
+			$this->setId($row['id']);
+			$this->setPseudo($row['pseudo']);
+			$this->setPasswordMD5($row['password']);
+			$this->setAvatar($row['avatar']);
   		}
 	}
 
@@ -57,12 +75,32 @@ class User
 	}
 	function setPassword($password)
 	{
-		$this->password = $password;
+		$this->password = md5($password);
 		return true;
+	}
+	function setPasswordMD5($passwordMD5)
+	{
+		$this->password = $password;
 	}
 	function setAvatar($avatar)
 	{
 		$this->avatar = $avatar;
+	}
+
+	function enregistrerUser()
+	{	
+		return "bdd n'existe pas encore";
+		$pdo = new database();
+		if($this->id == null)
+		{
+			$return = $pdo->query('INSERT INTO user(pseudo,password) VALUES ("'.$this->pseudo.'","'.$this->password.'")');
+			$this->id = $pdo->lastInsertId;
+		}
+		else
+		{
+			$return = $pdo->query('UPDATE user SET pseudo = "'.$this->pseudo.'", password="'.$this->password.'", avatar="'.$this->avatar.'" WHERE id='.$this->id);
+		}
+		return $return;
 	}
 
 }
