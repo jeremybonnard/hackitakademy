@@ -1,8 +1,14 @@
 <?php
-
+	
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors',1);
 	error_reporting(E_ALL);
+	if(!isset($_SESSION['session']))
+	{
+		session_start();
+		$_SESSION['session'] = 'true';
+	}
+
 
 	include('class/Database.php');
 	include('class/Security.php');
@@ -21,7 +27,7 @@
 
 	if($_GET['action'] == 'userCreateResponse')
 	{
-		userCreateResponse("toto", "mdp");
+		userCreateResponse();
 	}
 	elseif($_GET['action'] == 'userCreateForm')
 	{
@@ -35,10 +41,20 @@
 	{
 		userUpdateResponse();
 	}
+	elseif($_GET['action'] == 'userConnectForm')
+	{
+		userConnectForm();
+	}
+	elseif($_GET['action'] == 'userConnectResponse')
+	{
+		userConnectResponse();
+	}
 	else
 	{
 		Echo "404 Action non trouver!";
 	}
+	echo "<div>";
 
+	echo "</div>";
 	echo 	"</body>";
 ?>
