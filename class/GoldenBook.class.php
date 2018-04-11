@@ -43,11 +43,12 @@
     	}
 
 
-		public function listing($user_id){
+		public static function listingComments(){
 			$db = Database::getConnection();
 			$sql = user_id;
-			$stmt = $db->prepare("SELECT title, pseudo FROM goldenPage WHERE userId = :user_id");
+			$stmt = $db->prepare("SELECT title, pseudo FROM goldenPage");
 			$result = $stmt->execute(['user_id' => $user_id])->fetchAll();
+			var_dump($result);
 			return $result;
 
 		}
