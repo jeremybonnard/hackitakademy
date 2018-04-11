@@ -45,8 +45,33 @@ abstract class Security
     }
 
 
-    public static function secureImg($img, $level = 0)
+    public static function secureFile($file, $level = 0)
     {
 
     }
+
+// On passe par des variable _Session, donc pas besoin de les protéger finalement.
+    public static function secureUser($user)
+    {
+        return $user->getId();
+    }
+    public static function returnUser($hash)
+    {
+        return $hash;
+    }
+    public static function secureCsrf($level = 0)
+    {
+        $salt = "nxcwj45/Odsw0177";
+        if(! in_array($level,self::$lvl) || 2 == $level)
+        {
+            $csrf = md5($salt.rand(0,1000));
+            return $csrf;
+        }
+        else
+        {
+            return $salt;
+        }
+    }
+
+
 }

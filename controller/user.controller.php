@@ -12,7 +12,7 @@ function userCreateResponse()
 	$password = $_POST['password'];
 	$user = new User();
 	$user->creeUser($pseudo, $password);
-	$_SESSION['user'] = security::secureUser();
+	$_SESSION['user'] = security::secureUser($user);
 	include('view/createUserResponse.view.php');
 }
 
@@ -24,9 +24,17 @@ function userCreateForm()
 function userUpdateForm()
 {
 	$user = new User();
-	$user->chargerUser(security::returnUser($_SESSION['user']));
-	$_SESSION['csrf'] = security::secureCsrf();
-	include('view/updateUserForm.view.php');
+	if(isset($_SESSION['user']))
+	{
+		$user->chargerUser(security::returnUser($_SESSION['user']));
+		$_SESSION['csrf'] = security::secureCsrf();
+		include('view/updateUserForm.view.php');
+	}
+	else
+	{
+		include('view/createUserForm.view.php');
+	}
+
 }
 
 function userUpdateResponse()
@@ -60,4 +68,31 @@ function userUpdateResponse()
 	}
 	$user->enregistrerUser();
 	include('view/updateUserResponse.view.php');
+}
+
+function userConnectForm()
+{
+	include('view/connectUserForm.view.php');
+}
+
+function userConnectResponse()
+{
+	if(isset($_POST['pseudo'] && isset($_POST['password']))
+	{
+		$pdo = database::getConnection();
+		$pseudo = security::secureVar($_POST['pseudo']);
+		$password = security::secureVar($_POST['password']);
+		$passwordmd5 = md5($password);
+		$rqt = 'SELECT id FROM utilisateur WHERE pseudo = "'.$pseudo.'" AND password ="'.$passwordmd5.'"';
+		$result = $pdo->query($rqt);
+		if($result)
+		{
+			include('view/connectUserResponse.view.php');
+		}
+		else
+		{
+			include('view/connectUserForm.view.php');
+		}
+	}
+
 }
