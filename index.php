@@ -1,19 +1,30 @@
+<<<<<<< HEAD
 <?php  
+=======
+<?php
+>>>>>>> fd96fb2d543f5890de2f77bca3ebbcd108da58b1
 	
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors',1);
 	error_reporting(E_ALL);
+	if(!isset($_SESSION['session']))
+	{
+		session_start();
+		$_SESSION['session'] = 'true';
+	}
+
 
 	//Model
 	include('class/GoldenBook.class.php');	
 	include('class/Database.php');
 	include('class/Security.php');
 
-	//Controller
+
+	
+	include('class/User.class.php');
+
 	include('controller/user.controller.php');
 	include('controller/GoldenBook.controller.php');
-	//View
-	
 
 	echo "<!doctype html>";
 	echo 	"<html lang=\"fr\">";
@@ -27,7 +38,7 @@
 	echo 		"<body>";
 	if($_GET['action'] == 'userCreateResponse')
 	{
-		userCreateResponse("toto", "mdp");
+		userCreateResponse();
 	}
 	elseif($_GET['action'] == 'createCommentsForm')
 	{
@@ -42,10 +53,32 @@
 	{
 		userCreateForm();
 	}
+	elseif($_GET['action'] == 'userUpdateForm')
+	{
+		userUpdateForm();
+	}
+	elseif($_GET['action'] == 'userUpdateResponse')
+	{
+		userUpdateResponse();
+	}
+	elseif($_GET['action'] == 'userConnectForm')
+	{
+		userConnectForm();
+	}
+	elseif($_GET['action'] == 'userConnectResponse')
+	{
+		userConnectResponse();
+	}
 	else
 	{
 		Echo "404 Action non trouver!";
 	}
+
+	echo 			"<div>";
+	echo 				'<a href="index.php?action=userConnectForm">Se connecter</a>';
+	echo 				'<BR/><a href="index.php?action=userCreateForm">S\'inscrire';
+	echo 				'<BR/><a href="index.php?action=userUpdateForm">Update son compte (il faut être connecter!)</a>';
+	echo 			"</div>";
 	echo 		"</body>";
 	echo 	"</html>"
 

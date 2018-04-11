@@ -16,7 +16,14 @@ abstract class Database
         $pass = 'admin';
         $database = 'hack';
 
-        return new PDO('mysql:host=localhost;dbname='.$database, $user, $pass);
+        try{
+            $pdo = new PDO('mysql:dbname='.$database.';host=127.0.0.1', $user, $pass);
+        }
+        catch(PDOException $Exception){
+            die( $Exception->getMessage());
+        }
+        return $pdo;
+
     }
 
     public static function getConnection()
@@ -27,5 +34,7 @@ abstract class Database
         }
         return self::$const;
     }
+
+
 
 }
