@@ -6,9 +6,11 @@
  * Time: 10:27
  */
 
-class Database
+abstract class Database
 {
-    public function __construct()
+    private static $const;
+
+    private static function makeConnection()
     {
         $user = 'root';
         $pass = 'admin';
@@ -17,4 +19,12 @@ class Database
         return new PDO('mysql:host=localhost;dbname='.$database, $user, $pass);
     }
 
+    public static function getConnection()
+    {
+        if(!(self::$const))
+        {
+            self::$const = self::makeConnection();
+        }
+        return self::$const;
+    }
 }
