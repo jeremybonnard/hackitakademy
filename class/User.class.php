@@ -1,5 +1,4 @@
 <?php 
-include('include/database.php');
 ////////////////////////////////////////
 //
 // Class User
