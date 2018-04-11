@@ -4,7 +4,8 @@
 	ini_set('display_startup_errors',1);
 	error_reporting(E_ALL);
 
-	include('Include/Database.php');
+	include('class/Database.php');
+	include('class/Security.php');
 
 
 	include('controller/user.controller.php');

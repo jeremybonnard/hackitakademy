@@ -38,7 +38,7 @@ function userUpdateResponse()
 	if($csrf == $_SESSION['csrf'])
 	{
 		$erreur = true;
-		$erreurMessage = 'Le CSRF est incorrect!':
+		$erreurMessage = 'Le CSRF est incorrect!';
 	}
 	include('view/updateUserResponse.view.php');
 }
