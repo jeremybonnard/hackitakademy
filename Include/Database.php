@@ -27,4 +27,15 @@ abstract class Database
         }
         return self::$const;
     }
+
+
+    public static function secureVar($var)
+    {
+        str_replace('\'','', $var);
+        str_replace('#','', $var);
+        str_replace('<','', $var);
+        str_replace('>','', $var);
+
+        return $var;
+    }
 }
