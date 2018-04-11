@@ -24,8 +24,10 @@ abstract class Security
         else
         {
             if ($level == 1) {
-                $res = str_replace(strtolower("<script>"),"&lt;script&gt;", $res);
-                $res = str_replace(";","&lt;script&gt;", $res);
+                $res = strtolower($res);
+                $res = str_replace(";","&#59;", $res);
+                $res = str_replace("<script>","&lt;script&gt;", $res);
+                $res = str_replace("</script>","&lt;&#47;script&gt;", $res);
             }
             if ($level == 2)
             {
@@ -34,8 +36,8 @@ abstract class Security
                 $res = str_replace('#', '&#35;', $res);
                 $res = str_replace('<', '&lt;', $res);
                 $res = str_replace('>', '&gt;', $res);
-                $res = str_replace('& ', '&amp;;', $res);
-                $res = str_replace('|', '&amp;;', $res);
+                $res = str_replace('& ', '&amp;', $res);
+                //$res = str_replace('|', '&amp;', $res);
 
             }
         }
