@@ -29,15 +29,41 @@ abstract class Security
                 $res = str_replace("<script>","&lt;script&gt;", $res);
                 $res = str_replace("</script>","&lt;&#47;script&gt;", $res);
             }
-            if ($level == 2)
+            elseif ($level == 2)
             {
+                $res = strtolower($res);
+                $res = str_replace(";","&#59;", $res);
+                $first = strpos( $res, "<");
 
-                $res = str_replace('\'', '&#39;', $res);
+                if($first >= 0) {
+                    $res = substr_replace($res, "&lt;", $first, 1);
+                }
+                $first = strpos($res,">");
+                if($first >= 0)
+                {
+                    $res = substr_replace ($res,"&gt;", $first,1);
+                }
+
+
+                $second = strpos($res,"<");
+                var_dump($second);
+                if($second >=0)
+                {
+                    $res = substr_replace ($res,"&lt;", $second,1);
+                }
+                $second = strpos($res,">");
+                if($second >= 0)
+                {
+                    $res = substr_replace ($res,"&gt;", $second,1);
+                }
+
+
+                $res = str_replace('"', '&quot;;', $res);
                 $res = str_replace('#', '&#35;', $res);
-                $res = str_replace('<', '&lt;', $res);
-                $res = str_replace('>', '&gt;', $res);
+
                 $res = str_replace('& ', '&amp;', $res);
-                //$res = str_replace('|', '&amp;', $res);
+                $res = str_replace('/', '&#47;', $res);
+                $res = str_replace('|', ' &#124;', $res);
 
             }
         }
@@ -45,7 +71,7 @@ abstract class Security
     }
 
 
-    public static function secureImg($img, $level = 0)
+    public static function secureFile($img, $level = 0)
     {
 
     }
