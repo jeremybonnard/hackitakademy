@@ -13,6 +13,16 @@ abstract class Security
         'medium' => 2
     ];
 
+    private static $avatar = [
+        'png' => 'image/png',
+        'jpe' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'jpg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        ];
+
+
+
 
     public static function secureVar($var, $level = 0)
     {
@@ -74,5 +84,28 @@ abstract class Security
     public static function secureFile($img, $level = 0)
     {
 
+
+        if(! in_array($level,self::$lvl))
+        {
+            /**
+             * @TODO : trouver une lib qui ouvre l'image en question et test la palette associée.
+             */
+        }
+        else
+        {
+            if($level == 1)
+
+            if ($level == 2) {
+                $ext = mime_content_type($img);
+                if(! in_array($ext, self::$avatar))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
     }
 }
