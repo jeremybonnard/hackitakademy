@@ -6,19 +6,20 @@
 //
 ////////////////////////////////
 // Todo: Ajouter a security : secureUser et returnUser, et secureFile
-function userCreateResponse()
-{
-	$pseudo = $_POST['pseudo'];
-	$password = $_POST['password'];
-	$user = new User();
-	$user->creeUser($pseudo, $password);
-	$_SESSION['user'] = security::secureUser($user);
-	include('view/createUserResponse.view.php');
-}
 
 function userCreateForm()
 {
 	include('view/createUserForm.view.php');
+}
+
+function userCreateResponse()
+{
+	$pseudo = security::secureVar($_POST['pseudo'],0);
+	$password = security::secureVar($_POST['password'],0);
+	$user = new User();
+	$user->creeUser($pseudo, $password);
+	$_SESSION['user'] = security::secureUser($user);
+	include('view/createUserResponse.view.php');
 }
 
 function userUpdateForm()
@@ -39,9 +40,9 @@ function userUpdateForm()
 
 function userUpdateResponse()
 {
-	$pseudo = security::secureVar($_POST['pseudo']);
-	$password = security::secureVar($_POST['password']);
-	$avatar = security::secureFile($_FILES['avatar']);
+	$pseudo = security::secureVar($_POST['pseudo'],1);
+	$password = security::secureVar($_POST['password'],2);
+	$avatar = security::secureFile($_FILES['avatar'],1);
 	$id = security::secureVar($_POST['id']);
 	$csrf = security::secureVar($_POST['csrf']);
 	if($csrf == $_SESSION['csrf'])
@@ -80,8 +81,8 @@ function userConnectResponse()
 	if(isset($_POST['pseudo']) && isset($_POST['password']))
 	{
 		$pdo = database::getConnection();
-		$pseudo = security::secureVar($_POST['pseudo']);
-		$password = security::secureVar($_POST['password']);
+		$pseudo = security::secureVar($_POST['pseudo'],0);
+		$password = security::secureVar($_POST['password'],1);
 		$passwordmd5 = md5($password);
 		$rqt = 'SELECT id FROM utilisateur WHERE pseudo = "'.$pseudo.'" AND password ="'.$passwordmd5.'"';
 		$result = $pdo->query($rqt);

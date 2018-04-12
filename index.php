@@ -55,7 +55,7 @@
 	}
 	else
 	{
-		Echo "404 Action non trouver!";
+		Echo "404 Action non trouvée!";
 	}
 	echo 		"<div>";
 	echo 			'<BR/><a href="index.php?action=userCreateForm">S\'inscrire';
