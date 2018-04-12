@@ -19,7 +19,7 @@ class GoldenBook
 
 		$this->id = null;
 		$this->title = $title;
-		//$this->content = $content;
+		$this->content = $content;
 		$this->user_id = $user_id;
 		$this->registerComment();
 	}
@@ -66,7 +66,7 @@ class GoldenBook
 
 	public static function listingAllComments(){
 		$db = database::getConnection();
-		$stmt = $db->prepare("SELECT title, pseudo FROM goldenPage");
+		$stmt = $db->prepare("SELECT id, title, content FROM goldenPage ORDER BY id DESC LIMIT 10");
 		$stmt->execute();
 		$result = $stmt->fetchAll();
 		return $result;
@@ -89,7 +89,7 @@ class GoldenBook
 		$pdo = Database::getConnection();
 		if($this->id == null)
 		{
-			$result = $pdo->query('INSERT INTO goldenPage(title,content, userId) VALUES ("'.htmlentities(Security::secureVar($this->title).'","'.Security::secureVar($this->content).'","'.Security::secureVar($this->user_id).'")'));
+			$result = $pdo->query('INSERT INTO goldenPage(title,content, userId) VALUES ("'.(Security::secureVar($this->title).'","'.Security::secureVar($this->content).'","'.Security::secureVar($this->user_id).'")'));
 			
 		}
 		else

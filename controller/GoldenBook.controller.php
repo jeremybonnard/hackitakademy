@@ -11,19 +11,22 @@ function addComment(){
 
 	if(isset($_SESSION['user'])){
 		$user_id = $_SESSION['user'];
-		var_dump($_SESSION['user']);
 		$title = $_POST['title'];
 		$content = $_POST['content'];
-		include_once('class/GoldenBook.class.php');
 		$comment = new GoldenBook();
 		$comment->createComment($title, $content, $user_id);
-		var_dump($comment->listingAllComments());
+
+		header("Location : /index.php?action=commentsAllForm");
 	}
 	else {
 		include_once('view/notConnectedResponse.view.php');
 	}
 
 
+}
+
+function commentsAllForm(){
+	include_once('view/commentsAllForm.view.php');
 }
 
 ?>

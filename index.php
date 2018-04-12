@@ -43,7 +43,6 @@
 	}
 	elseif($_GET['action'] == 'addComment')
 	{	
-		//$id = $_GET['userId'];
 		addComment();
 	}
 	elseif($_GET['action'] == 'userCreateForm')
@@ -66,15 +65,22 @@
 	{
 		userConnectResponse();
 	}
+	elseif($_GET['action'] == 'commentsAllForm')
+	{	
+		commentsAllForm();
+	}
 	else
 	{
 		Echo "404 Action non trouver!";
 	}
+	
 
-	echo 			"<div>";
-	echo 				'<a href="index.php?action=userConnectForm">Se connecter</a>';
-	echo 				'<BR/><a href="index.php?action=userCreateForm">S\'inscrire';
-	echo 				'<BR/><a href="index.php?action=userUpdateForm">Update son compte (il faut être connecter!)</a>';
+	echo 			'<div class="list-group">';
+	echo 				'<a href="index.php?action=userConnectForm" class="list-group-item list-group-item-action">Se connecter</a>';
+	echo 				'<a href="index.php?action=userCreateForm" class="list-group-item list-group-item-action">S\'inscrire';
+	echo 				'<a href="index.php?action=userUpdateForm" class="list-group-item list-group-item-action">Update son compte (il faut être connecter!)</a>';
+	echo 				'<a href="index.php?action=commentsAllForm" class="list-group-item list-group-item-action">Voir tous les commentaires</a>';
+	echo 				'<a href="index.php?action=createCommentsForm" class="list-group-item list-group-item-action">Ajouter un commentaire (il faut être connecter!)</a>';
 	echo 			"</div>";
 	echo 		"</body>";
 	echo 	"</html>"
