@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-<?php  
-=======
 <?php
->>>>>>> fd96fb2d543f5890de2f77bca3ebbcd108da58b1
+
 	
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors',1);

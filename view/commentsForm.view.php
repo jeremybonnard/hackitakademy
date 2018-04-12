@@ -27,6 +27,7 @@
 		include_once('class/GoldenBook.class.php');
 		$test = new GoldenBook();
 		var_dump($test->listingAllComments());
+    //var_dump(_SESSION['user']);
 
 	?>
 </pre>

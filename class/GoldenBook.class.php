@@ -65,11 +65,10 @@ class GoldenBook
 
 
 	public static function listingAllComments(){
-		$db = Database::getConnection();
-		$sql = user_id;
+		$db = database::getConnection();
 		$stmt = $db->prepare("SELECT title, pseudo FROM goldenPage");
-		$result = $stmt->execute()->fetchAll();
-		var_dump($result);
+		$stmt->execute();
+		$result = $stmt->fetchAll();
 		return $result;
 
 	}
