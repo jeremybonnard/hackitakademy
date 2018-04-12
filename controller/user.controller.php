@@ -99,3 +99,10 @@ function userConnectResponse()
 	}
 
 }
+
+function userDisconnectResponse()
+{
+	session_destroy();
+	session_start();
+	include('view/connectUserForm.view.php');
+}
