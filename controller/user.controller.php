@@ -85,16 +85,19 @@ function userConnectResponse()
 		$password = security::secureVar($_POST['password'],1);
 		$passwordmd5 = md5($password);
 		$rqt = 'SELECT id FROM utilisateur WHERE pseudo = "'.$pseudo.'" AND password ="'.$passwordmd5.'"';
-		$result = $pdo->query($rqt);
-		if($result)
-		{
-			foreach  ($pdo->query($rqt) as $row) {
-				$_SESSION['user'] = $row['id'];
-			 }
-			include('view/connectUserResponse.view.php');
+		$connection = false;
+		foreach($pdo->query($rqt,PDO::FETCH_ASSOC) as $row) {
+			$_SESSION['user'] = $row['id'];
+			$connection = true;
 		}
+
+		if($connection)
+		{
+			include('view/connectUserResponse.view.php');
+		}		
 		else
 		{
+			$erreur = true;
 			include('view/connectUserForm.view.php');
 		}
 	}
