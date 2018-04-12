@@ -68,11 +68,10 @@
 	elseif($_GET['action'] == 'commentsAllForm')
 	{	
 		commentsAllForm();
-
+	}
 	elseif($_GET['action'] == 'userDisconnectResponse')
 	{
 		userDisconnectResponse();
-
 	}
 	else
 	{
@@ -87,5 +86,5 @@
 	echo 				'<a href="index.php?action=createCommentsForm" class="list-group-item list-group-item-action">Ajouter un commentaire (il faut être connecter!)</a>';
 	echo 			"</div>";
 	echo 		"</body>";
-	echo 	"</html>"
+	echo 	"</html>";
 ?>

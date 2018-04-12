@@ -89,12 +89,12 @@ class GoldenBook
 		$pdo = Database::getConnection();
 		if($this->id == null)
 		{
-			$result = $pdo->query('INSERT INTO goldenPage(title,content, userId) VALUES ("'.(Security::secureVar($this->title).'","'.Security::secureVar($this->content).'","'.Security::secureVar($this->user_id).'")'));
+			$result = $pdo->query('INSERT INTO goldenPage(title,content, userId) VALUES ("'.(Security::secureVar($this->title).'","'.Security::secureVar($this->content,2).'","'.Security::secureVar($this->user_id).'")'));
 			
 		}
 		else
 		{
-			$result = $pdo->query('UPDATE goldenPage SET title = "'.Security::secureVar($this->title).'", content="'.Security::secureVar($this->content).'", userId="'.Security::secureVar($this->user_id).'" WHERE id='.$this->id);
+			$result = $pdo->query('UPDATE goldenPage SET title = "'.Security::secureVar($this->title,2).'", content="'.Security::secureVar($this->content).'", userId="'.Security::secureVar($this->user_id).'" WHERE id='.$this->id);
 		}
 	}
 }
