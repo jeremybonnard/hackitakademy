@@ -34,3 +34,8 @@ Faille :
 Il suffit d'ajouter deux autre chevrons.
 On peut utiliser UNION et AND dans les requêtes SQL
 --------------------
+
+Pro Tips : Bien penser a créer la base de données hack avant de lancer le script.sql avec la commande mysql -uroot -padmin hack < script.sql
+DROP DATABASE IF EXISTS hack;
+CREATE DATABASE hack;
+--------------------
