@@ -49,14 +49,19 @@
 	{
 		userConnectResponse();
 	}
+	elseif($_GET['action'] == 'userDisconnectResponse')
+	{
+		userDisconnectResponse();
+	}
 	else
 	{
-		Echo "404 Action non trouver!";
+		Echo "404 Action non trouvée!";
 	}
-	echo "<div>";
-	echo '<a href="index.php?action=userConnectForm">Se connecter</a>';
-	echo '<BR/><a href="index.php?action=userCreateForm">S\'inscrire';
-	echo '<BR/><a href="index.php?action=userUpdateForm">Update son compte (il faut être connecter!)</a>';
-	echo "</div>";
+	echo 		"<div>";
+	echo 			'<BR/><a href="index.php?action=userCreateForm">S\'inscrire';
+	echo 			'<BR/><a href="index.php?action=userConnectForm">Se connecter</a>';
+	echo 			'<BR/><a href="index.php?action=userDisconnectResponse">Se déconnecter</a>';
+	echo 			'<BR/><a href="index.php?action=userUpdateForm">Update son compte (il faut être connecter!)</a>';
+	echo 		"</div>";
 	echo 	"</body>";
 ?>

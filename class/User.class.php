@@ -83,7 +83,7 @@ class User
 	}
 	function setPasswordMD5($passwordMD5)
 	{
-		
+
 		$this->password = $passwordMD5;
 		return true;
 	}
@@ -99,13 +99,13 @@ class User
 		$pdo = database::getConnection();
 		if($this->id == null)
 		{
-			$rqt = 'INSERT INTO utilisateur (pseudo,password) VALUES ("'.security::secureVar($this->pseudo).'","'.security::secureVar($this->password).'")';
+			$rqt = 'INSERT INTO utilisateur (pseudo,password) VALUES ("'.$this->pseudo.'","'.$this->password.'")';
 			$return = $pdo->query($rqt);
 			$this->id = $pdo->lastInsertId();
 		}
 		else
 		{
-			$rqt = 'UPDATE utilisaeur SET pseudo = "'.$this->pseudo.'", password="'.$this->password.'", avatar="'.$this->avatar.'" WHERE id='.$this->id;
+			$rqt = 'UPDATE utilisaeur SET pseudo = "'.$this->pseudo.'", password="'.$this->password.'", avatar="'.$this->getAvatar.'" WHERE id='.$this->id;
 			$return = $pdo->query($rqt);
 		}
 		return $return;
