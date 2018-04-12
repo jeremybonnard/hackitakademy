@@ -87,7 +87,9 @@ function userConnectResponse()
 		$result = $pdo->query($rqt);
 		if($result)
 		{
-			$_SESSION['user'] = $user->getId();
+			foreach  ($pdo->query($rqt) as $row) {
+				$_SESSION['user'] = $row['id'];
+			 }
 			include('view/connectUserResponse.view.php');
 		}
 		else
