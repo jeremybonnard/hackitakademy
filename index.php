@@ -33,51 +33,59 @@
 	echo 			'<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>';
 	echo 		"</head>";
 	echo 		"<body>";
-	if($_GET['action'] == 'userCreateResponse')
+	if(isset($_GET['action']) )
 	{
-		userCreateResponse();
-	}
-	elseif($_GET['action'] == 'createCommentsForm')
-	{
-		createCommentsForm();
-	}
-	elseif($_GET['action'] == 'addComment')
-	{	
-		addComment();
-	}
-	elseif($_GET['action'] == 'userCreateForm')
-	{
-		userCreateForm();
-	}
-	elseif($_GET['action'] == 'userUpdateForm')
-	{
-		userUpdateForm();
-	}
-	elseif($_GET['action'] == 'userUpdateResponse')
-	{
-		userUpdateResponse();
-	}
-	elseif($_GET['action'] == 'userConnectForm')
-	{
-		userConnectForm();
-	}
-	elseif($_GET['action'] == 'userConnectResponse')
-	{
-		userConnectResponse();
-	}
-	elseif($_GET['action'] == 'commentsAllForm')
-	{	
-		commentsAllForm();
-	}
-	elseif($_GET['action'] == 'userDisconnectResponse')
-	{
-		userDisconnectResponse();
+		if($_GET['action'] == 'userCreateResponse')
+		{
+			userCreateResponse();
+		}
+		elseif($_GET['action'] == 'createCommentsForm')
+		{
+			createCommentsForm();
+		}
+		elseif($_GET['action'] == 'addComment')
+		{	
+			addComment();
+		}
+		elseif($_GET['action'] == 'userCreateForm')
+		{
+			userCreateForm();
+		}
+		elseif($_GET['action'] == 'userUpdateForm')
+		{
+			userUpdateForm();
+		}
+		elseif($_GET['action'] == 'userUpdateResponse')
+		{
+			userUpdateResponse();
+		}
+		elseif($_GET['action'] == 'userConnectForm')
+		{
+			userConnectForm();
+		}
+		elseif($_GET['action'] == 'userConnectResponse')
+		{
+			userConnectResponse();
+		}
+		elseif($_GET['action'] == 'commentsAllForm')
+		{	
+			commentsAllForm();
+		}
+		elseif($_GET['action'] == 'userDisconnectResponse')
+		{
+			userDisconnectResponse();
 
+		}
+		else
+		{
+			echo "404 Action non trouvée!";
+		}	
 	}
 	else
 	{
-		echo "404 Action non trouvée!";
+
 	}
+	
 
 	echo 			'<div class="list-group">';
 	echo 				'<a href="index.php?action=userConnectForm" class="list-group-item list-group-item-action">Se connecter</a>';
