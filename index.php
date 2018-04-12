@@ -68,12 +68,16 @@
 	elseif($_GET['action'] == 'commentsAllForm')
 	{	
 		commentsAllForm();
+
+	elseif($_GET['action'] == 'userDisconnectResponse')
+	{
+		userDisconnectResponse();
+
 	}
 	else
 	{
-		Echo "404 Action non trouver!";
+		Echo "404 Action non trouvée!";
 	}
-	
 
 	echo 			'<div class="list-group">';
 	echo 				'<a href="index.php?action=userConnectForm" class="list-group-item list-group-item-action">Se connecter</a>';
@@ -84,5 +88,4 @@
 	echo 			"</div>";
 	echo 		"</body>";
 	echo 	"</html>"
-
 ?>
