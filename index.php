@@ -43,8 +43,8 @@
 	}
 	elseif($_GET['action'] == 'addComment')
 	{	
-		$id = $_GET['userId'];
-		addComment($id);
+		//$id = $_GET['userId'];
+		addComment();
 	}
 	elseif($_GET['action'] == 'userCreateForm')
 	{

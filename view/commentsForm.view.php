@@ -1,9 +1,4 @@
-
-
-	 <!--<title>Titre de la page</title>-->
-  <!--<link rel="stylesheet" href="style.css">-->
-  <!--<script src="script.js"></script>-->
-<form method="post" action="action="index.php?action=addComment"">
+<form action="index.php?action=addComment" method="POST">
   	<fieldset>
     	<legend>Golden Book</legend>
     	<div class="form-group row">
@@ -15,19 +10,10 @@
     	</div>	
     	<div class="form-group">
       		<label for="exampleTextarea">Comments</label>
-      		<textarea class="form-control" id="textarea" rows="3" name="content"></textarea>
+      		<textarea class="form-control" id="content" rows="3" name="content"></textarea>
       		<small id="titleHelp" class="form-text text-muted">We'll share your comments with everybody.</small>
     	</div>
     </fieldset>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 	
-<pre>
-	<?php
-		include_once('class/GoldenBook.class.php');
-		$test = new GoldenBook();
-		var_dump($test->listingAllComments());
-    //var_dump(_SESSION['user']);
-
-	?>
-</pre>

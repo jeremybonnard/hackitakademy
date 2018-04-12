@@ -14,17 +14,17 @@ class GoldenBook
     	$this->user_id = null;
 	}
 
-	function createComment($title, $text, $user_id)
+	function createComment($title, $content, $user_id)
 	{
 
 		$this->id = null;
 		$this->title = $title;
-		$this->content = $content;
+		//$this->content = $content;
 		$this->user_id = $user_id;
 		$this->registerComment();
 	}
 
-	function updateComment($id, $title, $text, $user_id)
+	function updateComment($id, $title, $content, $user_id)
 	{
 
 		$this->id = $id;
